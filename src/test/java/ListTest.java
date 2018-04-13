@@ -29,36 +29,30 @@ public class ListTest {
     private static void setListToLinkedList() {
         list = new LinkedList<>();
     }
-    private static void startingMessage() {
-        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
-    }
-    private static void closingMessage() {
-        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
-    }
 
-    // Method add
+    // Add
     public static void testAddingWhenObjectTypeIsPassed() {
-        startingMessage();
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
         Integer one = 1;
         // When
         boolean result = list.add(one);
         // Then
         assert result :"Adding to the list was not successful";
-        closingMessage();
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     public static void testAddingNullWhenIntegerGenericType() {
-        startingMessage();
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
         Integer integer = null;
         // When
         boolean result = list.add(integer);
         // Then
         assert result: Color.ANSI_RED + "Adding to the list was not successful";
-        closingMessage();
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     public static void testIfFirstElementInListIsTheSameAsOnlyOneAddedToIt() {
-        startingMessage();
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
         Integer five = 5;
         // When
@@ -66,21 +60,36 @@ public class ListTest {
         Integer number = (Integer) list.get(0);
         // Then
         assert five.equals(number) :"Passed number doesn't equals requested number.";
-        closingMessage();
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // Add with index
+    public static void testAddingAtSpecificIndexAndCheckIfEquals() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Integer five = 5;
+        Integer one = 1;
+        // When
+        list.add(one);
+        list.add(0,five);
+        Integer number = (Integer)list.get(0);
+        // Then
+        assert number.equals(five):"Number doesn't equals inserted number.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfAddShiftNextElementToNextPosition() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Integer six = 6;
+        Integer ten = 10;
+        list.add(six);
+        // When
+        list.add(0,ten);
+        Integer number = (Integer) list.get(1);
 
-
-    public static void testToArrayThrowsExceptionWhenNullArgumentIsPassed() {
-        startingMessage();
-        boolean result = false;
-        try {
-            Object[] array = list.toArray(null);
-        } catch (NullPointerException e) {
-            result = true;
-        }
-        assert result: Color.ANSI_RED + "Adding to the list was not successful";
-        closingMessage();
+        // Then
+        assert number.equals(six):"Number does not shift to the right.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
 
 
