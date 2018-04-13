@@ -1,7 +1,5 @@
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +27,7 @@ public class ListTest {
     private static void setListToLinkedList() {
         list = new LinkedList<>();
     }
-
+    //========================================
     // Add
     public static void testAddingWhenObjectTypeIsPassed() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
@@ -91,6 +89,59 @@ public class ListTest {
         assert number.equals(six):"Number does not shift to the right.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
+    public static void testAddingAtSpecificIndexThrowAnException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        boolean result = false;
+        Integer seven = 7;
+        int nonExistingIndex = 1;
+        // When
+        try {
+            list.add(nonExistingIndex,seven);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
+        // Then
+        assert result :"Adding at non existing index does not throw an exception.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    // addAll
+    public static void testAddingAnotherCollectionToEmptyCollectionReturnsTrue() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Set<String> anotherCollection = new HashSet<>();
+        Collections.addAll(anotherCollection,"Roman","Adam","Borys");
+        boolean result = list.addAll(anotherCollection);
+        // When
+
+        // Then
+        assert result:"Adding another collection resulted in false.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfAddAllSustainsOrderOfTheList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        List<String> otherList = new ArrayList<>();
+        Collections.addAll(list,"Roman","Adam","Borys");
+        // When
+        otherList.addAll(list);
+        boolean result = otherList.get(0).equals(list.get(0));
+        // Then
+        assert result:"Lists objects are not in the same places.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName3() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+
+        // Then
+        assert  :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+
 
 
 
