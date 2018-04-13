@@ -130,14 +130,16 @@ public class ListTest {
         assert result:"Lists objects are not in the same places.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName3() {
+    public static void testIfSizeOfNewListIsEqualToTheOriginal() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        List<String> otherList = new ArrayList<>();
+        Collections.addAll(list,"Roman","Adam","Borys");
         // When
-
+        otherList.addAll(list);
+        boolean result = list.size() == otherList.size();
         // Then
-        assert  :"Text";
+        assert  result :"List sizes are not equal.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
