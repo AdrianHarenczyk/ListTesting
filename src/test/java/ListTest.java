@@ -461,35 +461,38 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
-    // methodTested
-    public static void testName1() {
+    // lastIndexOf
+    public static void testLastIndexOfShouldReturnFiveWhenSearchingForBorys() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        list.addAll(otherList);
+        list.addAll(otherList);
+        String borys = "Borys";
         // When
-        boolean result = false;
+        boolean result = 5 == list.lastIndexOf(borys);
         // Then
-        assert  result :"Text";
+        assert  result :"Last index is different then expected.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testLastIndexOfShouldReturnMinusOneWhenNoSuchObject() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        String patryk = "Patryk";
+        list.addAll(otherList);
         // When
-        boolean result = false;
+        boolean result = -1 == list.lastIndexOf(patryk);
         // Then
-        assert  result :"Text";
+        assert  result :"Result of last index of was different than -1";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName3() {
+    public static void testLastIndexOfShouldReturnMinusOneWhenListIsEmpty() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        String prometeusz = "Prometeusz";
         // When
-        boolean result = false;
+        boolean result = -1 == list.lastIndexOf(prometeusz);
         // Then
-        assert  result :"Text";
+        assert  result :"Last Index of prometeusz should return -1 on empty list.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
