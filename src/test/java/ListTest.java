@@ -280,6 +280,65 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // equals
+    public static void testIfEqualsReturnsTrueWhenTwoExactlySameListsAreCompared() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = list.equals(list);
+        // Then
+        assert  result :"List is not equal to itself.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfTwoListsWithTheSameElementsAreEqual() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = list.equals(otherList);
+        // Then
+        assert  result :"Two lists are not equal";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // get
+    public static void testIfGetWhenNoSuchIndexThrowsIndexOutOfBoundsException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        boolean result = false;
+        // When
+        try {
+            list.get(5);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
+        // Then
+        assert  result :"Get did not throw any exception when given non existing index in the specified list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfGetToIndexWithTheSpecificObjectReturnesSameObjectAsSpecified() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String specificObject = "Adam";
+        // When
+        boolean result = list.get(1).equals(specificObject);
+        // Then
+        assert  result :"Get did not return the right object.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName3() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
 
 
 
