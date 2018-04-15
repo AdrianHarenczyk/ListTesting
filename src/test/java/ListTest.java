@@ -341,38 +341,33 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
-    // methodTested
-    public static void testName1() {
+    // hashCode
+    public static void testIfExpectedHashCodeMatchesActual() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        String adam = "Adam";
+        int hashOfAdam = adam.hashCode();
+        int suposedHashOfList = 31 + hashOfAdam;
+        list.add(adam);
         // When
-        boolean result = false;
+        boolean result = list.hashCode() == suposedHashOfList;
         // Then
-        assert  result :"Text";
+        assert  result :"HashCode expected doesn't match actual.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testIfEmptyListHasHashCodeEqualOne() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        int expectedHash = 1;
         // When
-        boolean result = false;
+        int actualHashCode = list.hashCode();
+        boolean result = actualHashCode == expectedHash;
         // Then
-        assert  result :"Text";
-        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
-    }
-    public static void testName3() {
-        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
-        // Given
-
-        // When
-        boolean result = false;
-        // Then
-        assert  result :"Text";
+        assert  result :"The expected hashcode doesn't match actual.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+
 
 
 
