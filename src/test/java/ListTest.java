@@ -367,6 +367,40 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // indexOf
+    public static void testIfIndexOfReturnsTwoWhenPassingBorys() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = list.indexOf("Borys") == 2;
+        // Then
+        assert  result :"Index is different then it should be.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfIndexOfReturnsMinusOneWhenPassingObjectWhichItDoesntHave() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String name = "Tomasz";
+        // When
+        boolean result = -1 == list.indexOf(name);
+        // Then
+        assert  result :"Value is different then minus one.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfListReturnsIndexOfFirstObjectOccurenceNotSecondOne() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String adam = "Adam";
+        list.addAll(otherList);
+        list.add(adam);
+        // When
+        boolean result = 1 == list.indexOf(adam);
+        // Then
+        assert  result :"IndexOf returned second or other index of object.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
 
 
 
