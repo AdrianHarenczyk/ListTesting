@@ -157,24 +157,30 @@ public class ListTest {
         assert  result :"Objects doesn't shift.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testAddingWithIndexToEmptyListThrowsIndexOutOfBoundException() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        boolean result = false;
         // When
-        boolean result = true;
+        try {
+            list.addAll(1,otherList);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
         // Then
-        assert  result :"Text";
+        assert  result :"Index out of bound did not occur.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName3() {
+    public static void testAddingEmptyListToEmptyListOnFirstIndexDoesNothing() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
 
         // When
+        List emptyList = new ArrayList();
+        list.addAll(0,emptyList);
         boolean result = true;
         // Then
-        assert  result :"Text";
+        assert  result :"List has changed.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
