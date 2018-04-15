@@ -401,6 +401,70 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // isEmpty
+    public static void testIfIsEmptyReturnsTrueWhileEmptyListPassed() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = list.isEmpty();
+        // Then
+        assert  result :"Is empty returned false while used on empty list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfIsEmptyReturnsFalseWhenUsedOnListWithObjects() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.add(otherList);
+        // When
+        boolean result = !list.isEmpty();
+        // Then
+        assert  result :"isEmpty returned true while there are Objects in list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIsEmptyShouldReturnFalseWhenNullIsInTheList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.add(null);
+        // When
+        boolean result = !list.isEmpty();
+        // Then
+        assert  result :"When null in the list, is empty returned true.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // iterator
+    public static void testIfResultOfIteratorMethodIsInstanceOfIterator() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName2() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName3() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
 
 
 
