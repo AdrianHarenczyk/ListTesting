@@ -434,7 +434,35 @@ public class ListTest {
     }
     //========================================
     // iterator
-    public static void testIfResultOfIteratorMethodIsInstanceOfIterator() {
+    public static void testIfIteratorReturnedReturnsProperObject() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        Iterator iterator = list.iterator();
+        // When
+        boolean result = iterator.next() == list.get(0);
+        // Then
+        assert  result :"The objects returned by iterator.next() is different than the first object in list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIteratorOfEmptyListShouldThrowNoSuchElementException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Iterator iterator = list.iterator();
+        boolean result = false;
+        // When
+        try {
+            Object object = iterator.next();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        // Then
+        assert  result :"Next on empty list didn't throw en exception.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // methodTested
+    public static void testName1() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
 
