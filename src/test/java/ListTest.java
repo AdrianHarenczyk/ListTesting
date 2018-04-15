@@ -248,37 +248,39 @@ public class ListTest {
     }
     //========================================
     // containsAll
-    public static void testName1() {
+    public static void testIfContainsAllReturnFalseWhenPassedFullListToEmptyList() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
 
         // When
-        boolean result = false;
+        boolean result = !list.contains(otherList);
         // Then
-        assert  result :"Text";
+        assert  result :"Contains All returns true when there are no objects in the list.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testIfContainsAllReturnTrueIfThereAreAllElementsInThisListWhichAreInTheOther() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        list.addAll(otherList);
         // When
-        boolean result = false;
+        boolean result = list.containsAll(otherList);
         // Then
-        assert  result :"Text";
+        assert  result :"ContainsAll returns false when all elements in lists are the same.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName3() {
+    public static void testIfContainsAllReturnsTrueWhenGivenEmptyListAsArgument() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        List emptyList = new ArrayList();
+        list.addAll(otherList);
         // When
-        boolean result = false;
+        boolean result = list.containsAll(emptyList);
         // Then
-        assert  result :"Text";
+        assert  result :"Contains all returned false when provided with empty list.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+
 
 
 
