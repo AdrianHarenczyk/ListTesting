@@ -171,16 +171,111 @@ public class ListTest {
         assert  result :"Index out of bound did not occur.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testAddingEmptyListToEmptyListOnFirstIndexDoesNothing() {
+    public static void testIfSecondIndexIsReplacedByFirstIndexOfAddedList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        String secondElementBefore = (String) list.get(1);
+        // When
+        list.addAll(1,otherList);
+        boolean result = !secondElementBefore.equals(list.get(1));
+        // Then
+        assert  result :"Second element is as it was.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // clear
+    public static void testIfSizeAfterClearIsZero() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        list.clear();
+        boolean result = list.size() == 0;
+        // Then
+        assert  result :"Size is not 0";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfGetRaiseAnError() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = false;
+        list.clear();
+        try {
+            list.get(1);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
+        // Then
+        assert  result :"Get on list which was cleared doesn't raise exception.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // contains
+    public static void testIfContainsReturnesTrueIfTheSameStringWhichIsInListIsPassed() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String sameStringWhichIsInList = "Roman";
+        list.addAll(otherList);
+        // When
+        boolean result = list.contains(sameStringWhichIsInList);
+        // Then
+        assert  result :"List doesn't contain specified object.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfContainsResultsInFalseWhenThereIsNoSuchObjectInList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String otherObject = "Nowak";
+        list.addAll(otherList);
+        // When
+        boolean result = !list.contains(otherObject);
+        // Then
+        assert  result :"Contains returns true, when it should not contain otherObject";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfContainsReturnFalseWhenListIsEmpty() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Object object = new Object();
+        // When
+        boolean result = !list.contains(object);
+        // Then
+        assert  result :"Contains returns true when the list is empty.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // containsAll
+    public static void testName1() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
 
         // When
-        List emptyList = new ArrayList();
-        list.addAll(0,emptyList);
-        boolean result = true;
+        boolean result = false;
         // Then
-        assert  result :"List has changed.";
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName2() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName3() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
