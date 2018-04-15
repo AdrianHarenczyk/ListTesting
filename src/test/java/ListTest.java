@@ -322,10 +322,44 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
         String specificObject = "Adam";
+        list.addAll(otherList);
         // When
         boolean result = list.get(1).equals(specificObject);
         // Then
         assert  result :"Get did not return the right object.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfWhenGetIndexZeroFromSizeOneListGetsThisElement() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String name = "Tomasz";
+        list.add(name);
+        // When
+        boolean result = list.get(0).equals(name);
+        // Then
+        assert  result :"Get did not returned exactly the same object.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // methodTested
+    public static void testName1() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName2() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = false;
+        // Then
+        assert  result :"Text";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     public static void testName3() {
