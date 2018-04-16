@@ -1,5 +1,6 @@
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +24,7 @@ public class ListTest {
             }
         }
 
+
     }
     private static void setListToArrayList() {
         list = new ArrayList<>();
@@ -37,7 +39,8 @@ public class ListTest {
         // Given
         Integer one = 1;
         // When
-        boolean result = list.add(one);
+        boolean result = false;
+                //list.add(one);
         // Then
         assert result :"Adding to the list was not successful";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
