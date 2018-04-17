@@ -606,7 +606,44 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // remove Object
+    public static void testIfRemoveObjectReturnsTrueIfListContainedThatObject() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String morty = "Morty";
+        list.add(morty);
+        // When
+        boolean result = list.remove(morty);
 
+        // Then
+        assert result:"Remove object returned false";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfRemoveObjectRemovesOnlyOneOccurrenceOfThatObject() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String morty = "Morty";
+        list.add(morty);
+        list.add(morty);
+        // When
+        list.remove(morty);
+        boolean result = list.size() == 1;
+        // Then
+        assert result:"List size is other than one.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfRemovingObjectWhichIsNotInListReturnFalse() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String morty = "Morty";
+        // When
+        boolean result = !list.remove(morty);
+
+        // Then
+        assert result:"List remove returned true.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
 
 
 
