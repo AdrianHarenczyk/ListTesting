@@ -643,7 +643,7 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
-    // MethodName
+    // removeAll
     public static void testIfListSizeIsSixMinusThreeWhenRemoveAllWithThreeElementCollection() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
@@ -675,6 +675,41 @@ public class ListTest {
 
         // Then
         assert result:"Remove all did return false.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // MethodName
+    public static void testName1() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = true;
+
+        // Then
+        assert result:"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName2() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = true;
+
+        // Then
+        assert result:"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName3() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = true;
+
+        // Then
+        assert result:"Text";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
