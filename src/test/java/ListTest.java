@@ -638,9 +638,43 @@ public class ListTest {
         String morty = "Morty";
         // When
         boolean result = !list.remove(morty);
-
         // Then
         assert result:"List remove returned true.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // MethodName
+    public static void testIfListSizeIsSixMinusThreeWhenRemoveAllWithThreeElementCollection() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        Collections.addAll(list,"Morty","Rick","Rumcajs");
+        // When
+        list.removeAll(otherList);
+        boolean result = list.size() == 3;
+        // Then
+        assert result:"List size is other than three.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testRemoveAllReturnsFalseWhenThereAreNoElementsLikeThisInThisList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        // When
+        boolean result = !list.removeAll(otherList);
+
+        // Then
+        assert result:"RemoveAll returned true, which points that it changed something.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testRemoveAllReturnsTrueWhenRemovedElementsIsSucessfull() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = list.removeAll(otherList);
+
+        // Then
+        assert result:"Remove all did return false.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
