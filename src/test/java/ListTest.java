@@ -1,4 +1,5 @@
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
@@ -13,8 +14,7 @@ public class ListTest {
     public static void main(String[] args) throws Exception{
         System.out.println(Color.ANSI_BLUE + "----====STARTING TESTS====----\n");
         Collections.addAll(otherList,"Roman","Adam","Borys");
-
-
+        
         for (Method name : ListTest.class.getDeclaredMethods()) {
             if (name.getName().startsWith("test")) {
                 setListToArrayList();
@@ -39,7 +39,7 @@ public class ListTest {
         // Given
         Integer one = 1;
         // When
-        boolean result = false;
+        boolean result = list.add(one);
                 //list.add(one);
         // Then
         assert result :"Adding to the list was not successful";
@@ -496,6 +496,113 @@ public class ListTest {
         boolean result = -1 == list.lastIndexOf(prometeusz);
         // Then
         assert  result :"Last Index of prometeusz should return -1 on empty list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // listIterator
+    public static void testIfListIteratorReturnedReturnsProperObject() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        Iterator iterator = list.listIterator();
+        // When
+        boolean result = iterator.next() == list.get(0);
+        // Then
+        assert  result :"The objects returned by iterator.next() is different than the first object in list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testListIteratorOfEmptyListShouldThrowNoSuchElementException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Iterator iterator = list.listIterator();
+        boolean result = false;
+        // When
+        try {
+            Object object = iterator.next();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        // Then
+        assert  result :"Next on empty list didn't throw en exception.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // listIterator with index
+    public static void testIfListIteratorInserdedInTheMiddleHasPrevious() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        ListIterator iterator = list.listIterator(1);
+        // When
+        boolean result = iterator.hasPrevious();
+        // Then
+        assert result:"Iterator created with method listIterator with index has no previous.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfListIteratorInsertedInTheMiddleHasNext() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        ListIterator iterator = list.listIterator(1);
+        // When
+        boolean result = iterator.hasNext();
+        // Then
+        assert result:"List iterator has no next element.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfWhenEmptyListMethodThrowsIndexOutOfBoundsException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        boolean result = false;
+        // When
+        try {
+            ListIterator iterator = list.listIterator(1);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
+        // Then
+        assert result:"Iterator did not throw any exceptions.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // remove
+    public static void testIfRemoveReturnsIndexOutOfBoundExceptionForEmptyList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        boolean result = false;
+        // When
+        try {
+            list.remove(1);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
+        // Then
+        assert result:"Method did not throw any exceptions.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfObjectWhichWasAddedEqualsObjectRemoved() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        String borys = "Borys";
+        list.add(borys);
+        String otherBorys = (String) list.remove(0);
+        // When
+        boolean result = borys.equals(otherBorys);
+        // Then
+        assert result:"Object added does not equal object removed.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfOtherObjectIndexesShiftToLeftIfRemoveIsUsed() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Collections.addAll(list,"Roman","Borys","Adam","Morty","Rick");
+        String morty = (String)list.get(3);
+        list.remove(2);
+        // When
+        boolean result = morty.equals(list.remove(2));
+
+        // Then
+        assert result:"Third index is not Morty after removing previous third index so it doesn't shift left.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
