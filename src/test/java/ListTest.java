@@ -873,37 +873,40 @@ public class ListTest {
     }
     //========================================
     // subList
-    public static void testName1() {
+    public static void testIfSubListOfListIsEqualToListAddedToOriginalOne() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        list.addAll(otherList);
+        list.addAll(otherList);
         // When
-        boolean result = true;
-
+        boolean result = list.subList(3,list.size()).get(0) == otherList.get(0);
         // Then
-        assert result:"Text";
+        assert result:"The first object in those lists are different.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testIfSubListOnEmptyListThrowIndexOutOfBoundException() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        boolean result = false;
         // When
-        boolean result = true;
-
+        try {
+            list.subList(0,1);
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
         // Then
-        assert result:"Text";
+        assert result:"Method did not throw any exceptions.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName3() {
+    public static void testIfWhenFromIndexAndTwoIndexAreEqualReturnedListIsEmpty() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        list.addAll(otherList);
         // When
-        boolean result = true;
-
+        List subList = list.subList(0,0);
+        boolean result = subList.isEmpty();
         // Then
-        assert result:"Text";
+        assert result:"Returned list was not empty.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
