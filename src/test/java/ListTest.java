@@ -771,6 +771,64 @@ public class ListTest {
         assert result:"Element which index is 1 is not changed.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
+    public static void testIfSetReturnsRemovedElement() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        String adam = (String)list.get(1);
+        // When
+        String supposedAdam = (String)list.set(1,"Roman");
+        boolean result = supposedAdam.equals(adam);
+        // Then
+        assert result:"Element returned by set is not the same.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // size
+    public static void testIfSizeOnEmptyListReturnsZero() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        // When
+        boolean result = 0 == list.size();
+        // Then
+        assert result:"Size returned other number than zero.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfSizeReturnsThreeOnListWithThreeElementsInIt() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        boolean result = 3 == list.size();
+
+        // Then
+        assert result:"List size was not as expected.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // MethodName
+    public static void testName1() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = true;
+
+        // Then
+        assert result:"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testName2() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+
+        // When
+        boolean result = true;
+
+        // Then
+        assert result:"Text";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
     public static void testName3() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
