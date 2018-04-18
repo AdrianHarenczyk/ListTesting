@@ -806,7 +806,73 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
-    // MethodName
+    // sort
+    public static void testIfSortChangesIndexOfAdamToZero() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        String adam = "Adam";
+        // When
+        list.sort((obj1,obj2) -> {
+            String s1 = (String) obj1;
+            String s2 = (String) obj2;
+            return s1.compareTo(s2);
+        });
+        boolean result = list.get(0).equals(adam);
+        // Then
+        assert result:"First index is not as it expected.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfMethodDoesNotThrowIllegalArgumentExceptionWhenPassedNull() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        boolean result = false;
+        // When
+        try {
+            list.sort(null);
+            result = true;
+        } catch (Exception e) {}
+        // Then
+        assert result:"Method throw en Exception.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // spliterator
+    public static void testIfSpliteratorSizeIsZeroIfSourceSizeIsKnownAndIsZero() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        // When
+        boolean result = list.size() == list.spliterator().getExactSizeIfKnown();
+        // Then
+        assert result:"Spliterator size is not zero.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfSpliteratorFromEmptyListMethodTryAdvanceReturnsFalse() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Spliterator spliterator = list.spliterator();
+        // When
+        boolean result = !spliterator.tryAdvance(System.out::println);
+        // Then
+        assert result:"Spliterator returned true.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfSpliteratorEstimateSizeReturnsAccualSizeOfList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        long actualSize = list.size();
+        Spliterator spliterator = list.spliterator();
+        long estimatedSize = spliterator.estimateSize();
+        // When
+        boolean result = actualSize == estimatedSize;
+        // Then
+        assert result:"The actual size is not equal to estimated.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // subList
     public static void testName1() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
