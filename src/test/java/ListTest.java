@@ -910,12 +910,44 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+    // toArray
+    public static void testIfToArrayOfNotEmptyListReturnsArrayWhichLengthIsEqualToListLength() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        // When
+        Object[] array = list.toArray();
+        boolean result = list.size() == array.length;
 
-
-
-
-
-
-
-
+        // Then
+        assert result:"Length of array returned is not equal to list size.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfObjectInArrayOnIndexZeroIsTheSameAsListIndexZero() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        Object[] array = list.toArray();
+        // When
+        boolean result = array[0].equals(list.get(0));
+        // Then
+        assert result:"Objects are not equal to each other after toArray method called";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfWhenNullListToArrayThrowsNullPointerException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list = null;
+        boolean result = true;
+        // When
+        try {
+            list.toArray();
+        } catch (NullPointerException e) {
+            result = true;
+        }
+        // Then
+        assert result:"No exceptions were thrown.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
 }
