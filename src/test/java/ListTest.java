@@ -678,27 +678,97 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
-    // MethodName
-    public static void testName1() {
+    // replaceAll
+    public static void testIfReplaceAllElementEqualsElementWithTheSameOperator() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        String adamKowalski = "Adam" + " Kowalski";
+        list.addAll(otherList);
         // When
-        boolean result = true;
+        list.replaceAll(n -> n + " Kowalski");
+        boolean result = list.get(1).equals(adamKowalski);
+        // Then
+        assert result:"This element isn't changed in a way that replace all should work.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfReplaceAllOnEmptyListDoesntThrowExceptions() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        boolean result = false;
+        // When
+        try {
+            list.replaceAll(n -> n + " something.");
+            result = true;
+        } catch (Exception e) {}
+        // Then
+        assert result:"En exception was thrown.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // retainAll
+    public static void testIfRetainAllEmptiesListWhenNoObjectsOfThatSortAreInList() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        Collections.addAll(list,"Tomasz","Rumcajs","Norbert");
+        // When
+        list.retainAll(otherList);
+        boolean result = 0 == list.size();
+        // Then
+        assert result:"RetainAll did not empty the list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfRetainAllDoesNotTakeAnEffectWhenUsedWithSameListOfObjects() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        list.addAll(otherList);
+        list.addAll(otherList);
+        int before = list.size();
+        // When
+        list.retainAll(otherList);
+        int after = list.size();
+        boolean result = before == after;
+        // Then
+        assert result:"Size before using retainAll on list does not match after using it.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    public static void testIfRetainAllOnEmptyListDoesNotTakeAnyEffect() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        // When
+        list.retainAll(otherList);
+        boolean result = 0 == list.size();
 
+        // Then
+        assert result:"Retain all changed list.";
+        logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
+    }
+    //========================================
+    // set
+    public static void testIfSetOnEmptyListThrowIndexOutOfBoundException() {
+        logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
+        // Given
+        boolean result = true;
+        // When
+        try {
+            list.set(1,"Roman");
+        } catch (IndexOutOfBoundsException e) {
+            result = true;
+        }
         // Then
         assert result:"Text";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
-    public static void testName2() {
+    public static void testIfSetChangesObjectInSpecifiedIndex() {
         logger.log(Level.INFO,Color.ANSI_CYAN + "STARTING." + Color.ANSI_RESET);
         // Given
-
+        list.addAll(otherList);
+        String adam = (String)list.get(1);
         // When
-        boolean result = true;
+        list.set(1,"Roman");
+        boolean result = !list.get(1).equals(adam);
 
         // Then
-        assert result:"Text";
+        assert result:"Element which index is 1 is not changed.";
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     public static void testName3() {
@@ -713,6 +783,7 @@ public class ListTest {
         logger.log(Level.INFO,Color.ANSI_GREEN  + "PASSED.\n"+ Color.ANSI_RESET);
     }
     //========================================
+
 
 
 
